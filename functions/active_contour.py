@@ -1,10 +1,10 @@
 from collections.abc import Iterable
 import numpy as np
-from skimage.color import rgb2gray
 from skimage import data
 from scipy.interpolate import RectBivariateSpline
 from skimage import img_as_float
 from skimage.filters import sobel
+from main_functions import rgb_to_grayscale
 
 # To plot the image with contour
 # image += '=' * (-len(image) % 4)
@@ -63,7 +63,8 @@ def active_contour(image, snake, alpha=0.015, beta=10,
         raise ValueError("Invalid boundary condition.\n" +
                          "Should be one of: "+", ".join(valid_bcs)+'.')
 
-    img = img_as_float(image)
+    img = rgb_to_grayscale(img)
+    img = img_as_float(img)
     float_dtype = _supported_float_type(image.dtype)
     img = img.astype(float_dtype, copy=False)
 
@@ -191,19 +192,17 @@ def active_contour(image, snake, alpha=0.015, beta=10,
     return np.stack([y, x], axis=1)
 
 
-# Load an image
-img = data.astronaut()
-img = rgb2gray(img)
 
-# Initialize a circle around the astronaut's face
-s = np.linspace(0, 2*np.pi, 400)
-r = 100 + 100*np.sin(s)
-c = 220 + 100*np.cos(s)
-init = np.array([r, c]).T
+# # Initialize a circle around the astronaut's face
+# s = np.linspace(0, 2*np.pi, 400)
+# r = 100 + 100*np.sin(s)
+# c = 220 + 100*np.cos(s)
+# init = np.array([r, c]).T
+
 
 # Apply active contour model with some parameters
-# snake = active_contour(gaussian(img, 3),
-#                        init)
+# snake = active_contour(gaussian(img, 3),init)
+
 
 # Plot the result
 # fig, ax = plt.subplots(figsize=(7, 7))
@@ -213,5 +212,3 @@ init = np.array([r, c]).T
 # ax.set_xticks([]), ax.set_yticks([])
 # ax.axis([0, img.shape[1], img.shape[0], 0])
 # plt.show()
-
-

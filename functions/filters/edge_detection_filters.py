@@ -2,7 +2,7 @@ import numpy as np
 import scipy.signal as sig
 import cv2
 
-from functions.noise_filters import gaussian_filter
+from filters.noise_filters import gaussian_filter
 
 def canny_edge_detection(image, weak_th = None, strong_th = None):
 # defining the canny detector function 

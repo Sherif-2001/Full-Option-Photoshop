@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image
 
-def kmeans(im, array_im, k, limit_it):
+def kmeans(array_im, k, limit_it):
     dim = array_im.shape[1]
     n = array_im.shape[0]
     it = 0
@@ -38,7 +38,7 @@ def K_means_segmentation(image_path, limit_it = 999999,k=8):
     arr = image.reshape(-1, 3)
 
     # KMEANS
-    clusters, centres = kmeans(image, arr, k, limit_it)
+    clusters, centres = kmeans(arr, k, limit_it)
 
     clusters = clusters.reshape((image.shape[0], image.shape[1]))
 

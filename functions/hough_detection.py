@@ -15,7 +15,7 @@ def hough_line(image,edge):
                     normal = x * np.cos(thetas[k]) + y * np.sin(thetas[k])
                     accumulator[int(normal),k] += 1
 
-    for i in range(accumulator.shape[0]): # i is r
+    for i in range(accumulator.shape[0]): # i is radius
         for j in range(accumulator.shape[1]): # j is theta
             if(accumulator[i][j] >= 150): # this is line
                 if(int(thetas[j])==0):

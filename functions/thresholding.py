@@ -1,20 +1,12 @@
 import numpy as np
 import cv2
-
 from enum import Enum
+from main_functions import get_histogram,rgb_to_grayscale
 
 class ThresholdMethod(Enum):
     OPTIMAL = 1
     OTSU = 2
     SPECTRAL = 3
-
-def histogram(image):
-    rows, columns = image.shape
-    frequency = np.zeros(256,dtype=int)
-    for i in range(rows):
-        for j in range(columns):
-            frequency[image[i][j]] = frequency[image[i][j]] + 1
-    return frequency
 
 def cumlative_sum(frequency):
     cumlative = np.zeros(256,dtype=int)
@@ -49,44 +41,32 @@ def optimal_threshold(img):
 
 def otsu_threshold(img):
     # calculate histogram
-    hist=histogram(img)
+    hist = get_histogram(img)
+
     # calculate cumlative sum of histogram
-    cum_sum=cumlative_sum(hist)
+    cum_sum = cumlative_sum(hist)
+
     # calculate cumlative mean of histogram
     cum_mean = cum_sum / cum_sum[-1]
+
     # calculate variances
-    variances = calc_variances(cum_mean,hist,cum_sum)
+    variances = calc_variances(cum_mean, hist, cum_sum)
+
     # optimal threshold
     thres_value = np.argmax(variances)
     return thres_value
 
-def spectral_thresholding_local(image, size):
-    result = np.zeros(image.shape)
-    i = 0
-    j = 0
-    nX = size[0]
-    nY = size[1]
-    while(j < image.shape[1]):
-        i = 0
-        nX = size[0]
-        while(i < image.shape[0]):
-            result[i:nX, j:nY] = spectral_thresholding(image[i:nX, j:nY])
-            i = nX
-            nX += size[0]
-        j = nY
-        nY += size[1]
-    return result
 
 def spectral_thresholding(img, k=10):
 
-     # Convert the image to grayscale
+    # Convert the image to grayscale
     if len(img.shape) > 2:
-        gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        gray = rgb_to_grayscale(img)
     else:
         gray = img
 
     # Compute the histogram of the image
-    hist = histogram(gray)
+    hist = get_histogram(gray)
 
     # Compute the cumulative distribution function (CDF)
     cdf = cumlative_sum(hist)
@@ -139,6 +119,24 @@ def spectral_thresholding(img, k=10):
 
     return binary
 
+
+# def spectral_thresholding_local(image, size):
+#     result = np.zeros(image.shape)
+#     i, j = 0, 0 
+#     nX = size[0]
+#     nY = size[1]
+#     while(j < image.shape[1]):
+#         i = 0
+#         nX = size[0]
+#         while(i < image.shape[0]):
+#             result[i:nX, j:nY] = spectral_thresholding(image[i:nX, j:nY])
+#             i = nX
+#             nX += size[0]
+#         j = nY
+#         nY += size[1]
+#     return result
+
+
 def global_threshold(imagePath, val_high=255, val_low=0, method=ThresholdMethod.OTSU):
     image = cv2.imread(imagePath,0)
     img = image.copy()
@@ -162,11 +160,10 @@ def global_threshold(imagePath, val_high=255, val_low=0, method=ThresholdMethod.
     
     cv2.imwrite("thresholding_output.png",img)
 
-def local_threshold(imagePath, val_high, val_low,method=ThresholdMethod.OTSU,block_size = 3):
+def local_threshold(imagePath, val_high, val_low,method = ThresholdMethod.OTSU,block_size = 3):
     image = cv2.imread(imagePath,0)
     img = image.copy()
-    i=0 
-    j=0 
+    i, j = 0, 0 
     last_thresh_value = 127
     while i+block_size+1 < image.shape[0]:
         j=0
@@ -179,9 +176,9 @@ def local_threshold(imagePath, val_high, val_low,method=ThresholdMethod.OTSU,blo
             elif method == ThresholdMethod.OPTIMAL:
                 thresh_value=optimal_threshold(img_block)
             elif method == ThresholdMethod.SPECTRAL:
-                thresh_value= spectral_thresholding_local(img_block,block_size)
-            else:
-                return None
+                # Check if the spectral_thresholding_local is right?
+                # thresh_value= spectral_thresholding_local(img_block)
+                thresh_value= spectral_thresholding(img_block)
                 
             last_thresh_value = thresh_value
             for k in range(i,i+block_size):
