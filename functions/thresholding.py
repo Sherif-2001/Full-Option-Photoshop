@@ -1,12 +1,5 @@
 import numpy as np
-import cv2
-from enum import Enum
-from main_functions import get_histogram,rgb_to_grayscale
-
-class ThresholdMethod(Enum):
-    OPTIMAL = 1
-    OTSU = 2
-    SPECTRAL = 3
+from functions.main_functions import get_histogram,rgb_to_grayscale,ThresholdMethod
 
 def cumlative_sum(frequency):
     cumlative = np.zeros(256,dtype=int)
@@ -137,9 +130,9 @@ def spectral_thresholding(img, k=10):
 #     return result
 
 
-def global_threshold(imagePath, val_high=255, val_low=0, method=ThresholdMethod.OTSU):
-    image = cv2.imread(imagePath,0)
+def global_threshold(image, val_high=255, val_low=0, method=ThresholdMethod.OTSU):
     img = image.copy()
+    image = rgb_to_grayscale(image)
     thres_value=0
 
     if method == ThresholdMethod.OTSU:
@@ -158,11 +151,11 @@ def global_threshold(imagePath, val_high=255, val_low=0, method=ThresholdMethod.
             else:
                 img[i,j] = val_low
     
-    cv2.imwrite("thresholding_output.png",img)
+    return img
 
-def local_threshold(imagePath, val_high, val_low,method = ThresholdMethod.OTSU,block_size = 3):
-    image = cv2.imread(imagePath,0)
+def local_threshold(image, val_high=255, val_low=0,method = ThresholdMethod.OTSU,block_size = 3):
     img = image.copy()
+    image = rgb_to_grayscale(image)
     i, j = 0, 0 
     last_thresh_value = 127
     while i+block_size+1 < image.shape[0]:
@@ -197,4 +190,4 @@ def local_threshold(imagePath, val_high, val_low,method = ThresholdMethod.OTSU,b
             else:
                 img[i,j] = val_low
 
-    cv2.imwrite("thresholding_output.png",img)
+    return img

@@ -1,12 +1,20 @@
 import numpy as np
 import cv2
+from enum import Enum
+
+
+class ThresholdMethod(Enum):
+    OPTIMAL = 1
+    OTSU = 2
+    SPECTRAL = 3
+
 
 def get_histogram(image):
     rows, columns = image.shape
     frequency = np.zeros(256,dtype=int)
     for i in range(rows):
-        for j in range(columns):
-            frequency[image[i][j]] = frequency[image[i][j]] + 1
+        for j in range(columns):    
+            frequency[image[i][j]] = list(frequency)[image[i][j]] + 1
     return frequency
 
 def rgb_split(image):

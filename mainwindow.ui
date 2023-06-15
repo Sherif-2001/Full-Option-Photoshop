@@ -33,7 +33,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -46,6 +46,9 @@
            <layout class="QVBoxLayout" name="verticalLayout_15">
             <item>
              <widget class="QGroupBox" name="groupBox_6">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
               <property name="title">
                <string>Noise</string>
               </property>
@@ -53,23 +56,38 @@
                <item>
                 <layout class="QVBoxLayout" name="verticalLayout_17">
                  <item>
-                  <widget class="QRadioButton" name="radioButton_17">
+                  <widget class="QRadioButton" name="saltandpepper_radio">
                    <property name="text">
                     <string>Salt and Pepper</string>
                    </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="radioButton_18">
-                   <property name="text">
-                    <string>Gaussian</string>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                   <property name="autoRepeat">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton_19">
+                  <widget class="QRadioButton" name="gaussian_radio">
+                   <property name="text">
+                    <string>Gaussian</string>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="uniform_radio">
                    <property name="text">
                     <string>Uniform</string>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
@@ -87,21 +105,24 @@
                <item>
                 <layout class="QVBoxLayout" name="verticalLayout_19">
                  <item>
-                  <widget class="QRadioButton" name="radioButton_20">
+                  <widget class="QRadioButton" name="average_radio">
                    <property name="text">
                     <string>Average</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton_21">
+                  <widget class="QRadioButton" name="gaussianf_radio">
                    <property name="text">
                     <string>Gaussian</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton_22">
+                  <widget class="QRadioButton" name="median_radio">
                    <property name="text">
                     <string>Median</string>
                    </property>
@@ -113,38 +134,59 @@
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="noise_btn">
+              <property name="text">
+               <string>Apply Noise</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="groupBox_8">
               <property name="title">
                <string>Edge Detection Filters</string>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_20">
+              <layout class="QVBoxLayout" name="verticalLayout_3">
                <item>
-                <layout class="QVBoxLayout" name="verticalLayout_21">
+                <layout class="QVBoxLayout" name="verticalLayout_2">
                  <item>
-                  <widget class="QRadioButton" name="radioButton_23">
-                   <property name="text">
-                    <string>Sobel</string>
-                   </property>
-                  </widget>
+                  <layout class="QGridLayout" name="gridLayout">
+                   <item row="0" column="0">
+                    <widget class="QRadioButton" name="sobel_radio">
+                     <property name="text">
+                      <string>Sobel</string>
+                     </property>
+                     <property name="checked">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QRadioButton" name="roberts_radio">
+                     <property name="text">
+                      <string>Roberts</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QRadioButton" name="prewitt_radio">
+                     <property name="text">
+                      <string>Prewitt</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QRadioButton" name="canny_radio">
+                     <property name="text">
+                      <string>Canny</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton_24">
+                  <widget class="QPushButton" name="edge_btn">
                    <property name="text">
-                    <string>Roberts</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="radioButton_25">
-                   <property name="text">
-                    <string>Prewitt</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="radioButton_26">
-                   <property name="text">
-                    <string>Canny</string>
+                    <string>Apply Edge Detection</string>
                    </property>
                   </widget>
                  </item>
@@ -162,64 +204,33 @@
                <item>
                 <layout class="QVBoxLayout" name="verticalLayout_26">
                  <item>
-                  <widget class="QRadioButton" name="radioButton_29">
+                  <widget class="QRadioButton" name="line_radio">
                    <property name="text">
                     <string>Line Detection</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton_30">
+                  <widget class="QRadioButton" name="circle_radio">
                    <property name="text">
                     <string>Circle Detection</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton_31">
+                  <widget class="QRadioButton" name="ellipse_radio">
                    <property name="text">
                     <string>Ellipse Detection</string>
                    </property>
                   </widget>
                  </item>
-                </layout>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QGroupBox" name="groupBox_9">
-              <property name="title">
-               <string>Histogram</string>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_22">
-               <item>
-                <layout class="QVBoxLayout" name="verticalLayout_23">
                  <item>
-                  <widget class="QRadioButton" name="radioButton_27">
+                  <widget class="QPushButton" name="hough_btn">
                    <property name="text">
-                    <string>Normalize</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="radioButton_28">
-                   <property name="text">
-                    <string>Equalize</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_2">
-                   <property name="text">
-                    <string>Show Histograms</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_3">
-                   <property name="text">
-                    <string>Show RGB Histograms</string>
+                    <string>Apply Hough Transform</string>
                    </property>
                   </widget>
                  </item>
@@ -228,22 +239,6 @@
               </layout>
              </widget>
             </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QLabel" name="mainImageLabel">
-            <property name="styleSheet">
-             <string notr="true">background: rgb(255, 255, 255);
-border: 2px solid black;
-border-radius: 10px</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_24">
             <item>
              <widget class="QGroupBox" name="groupBox_5">
               <property name="title">
@@ -262,7 +257,7 @@ border-radius: 10px</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_5"/>
+                    <widget class="QSpinBox" name="radius_spinbox"/>
                    </item>
                   </layout>
                  </item>
@@ -276,14 +271,74 @@ border-radius: 10px</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QSpinBox" name="spinBox_6"/>
+                    <widget class="QSpinBox" name="center_spinbox"/>
                    </item>
                   </layout>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_13">
+                  <widget class="QPushButton" name="contour_btn">
                    <property name="text">
                     <string>Apply Contour</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="homeimage_lbl">
+            <property name="styleSheet">
+             <string notr="true">background: rgb(255, 255, 255);
+border: 2px solid black;
+border-radius: 10px</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_24">
+            <item>
+             <widget class="QGroupBox" name="groupBox_9">
+              <property name="title">
+               <string>Histogram</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_22">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_23">
+                 <item>
+                  <widget class="QRadioButton" name="normalize_radio">
+                   <property name="text">
+                    <string>Normalize</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="equalize_radio">
+                   <property name="text">
+                    <string>Equalize</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="histogram_btn">
+                   <property name="text">
+                    <string>Apply</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="rgbhist_btn">
+                   <property name="text">
+                    <string>Show RGB Histograms</string>
                    </property>
                   </widget>
                  </item>
@@ -305,7 +360,7 @@ border-radius: 10px</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_27">
                <item>
-                <widget class="QPushButton" name="pushButton_6">
+                <widget class="QPushButton" name="harris_btn">
                  <property name="text">
                   <string>Detect Corners</string>
                  </property>
@@ -323,28 +378,31 @@ border-radius: 10px</string>
                <item>
                 <layout class="QVBoxLayout" name="verticalLayout_30">
                  <item>
-                  <widget class="QRadioButton" name="radioButton_35">
+                  <widget class="QRadioButton" name="otsu_radio">
                    <property name="text">
                     <string>Otsu</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton_15">
+                  <widget class="QRadioButton" name="optimal_radio">
                    <property name="text">
                     <string>Optimal</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton_36">
+                  <widget class="QRadioButton" name="spectral_radio">
                    <property name="text">
                     <string>Spectral</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="comboBox">
+                  <widget class="QComboBox" name="threshold_combobox">
                    <item>
                     <property name="text">
                      <string>Global</string>
@@ -355,6 +413,13 @@ border-radius: 10px</string>
                      <string>Local</string>
                     </property>
                    </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="threshold_btn">
+                   <property name="text">
+                    <string>Apply Thresholding</string>
+                   </property>
                   </widget>
                  </item>
                 </layout>
@@ -369,30 +434,56 @@ border-radius: 10px</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_14">
                <item>
-                <widget class="QRadioButton" name="radioButton_32">
+                <widget class="QRadioButton" name="kmeans_radio">
                  <property name="text">
                   <string>K-Means</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QRadioButton" name="radioButton_33">
+                <widget class="QRadioButton" name="regiongrowing_radio">
                  <property name="text">
                   <string>Region Growing</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QRadioButton" name="radioButton_34">
+                <widget class="QRadioButton" name="agglomerative_radio">
                  <property name="text">
                   <string>Agglomerative</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QRadioButton" name="radioButton_16">
+                <widget class="QRadioButton" name="meanshift_radio">
                  <property name="text">
                   <string>Mean Shift</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="segment_btn">
+                 <property name="text">
+                  <string>Apply Segmentation</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox">
+              <property name="title">
+               <string>Face Detection</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout">
+               <item>
+                <widget class="QPushButton" name="facedetect_btn">
+                 <property name="text">
+                  <string>Detect Faces</string>
                  </property>
                 </widget>
                </item>
@@ -408,16 +499,16 @@ border-radius: 10px</string>
                <item>
                 <layout class="QVBoxLayout" name="verticalLayout_39">
                  <item>
-                  <widget class="QPushButton" name="pushButton_14">
+                  <widget class="QPushButton" name="homebrowse_btn">
                    <property name="text">
                     <string>Browse Image</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_15">
+                  <widget class="QPushButton" name="reset_btn">
                    <property name="text">
-                    <string>Clear all</string>
+                    <string>Reset Image</string>
                    </property>
                   </widget>
                  </item>
@@ -434,7 +525,7 @@ border-radius: 10px</string>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Hybrid Image</string>
+        <string>Hybrid</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_35">
         <item>
@@ -442,7 +533,7 @@ border-radius: 10px</string>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_34" stretch="0,0,0">
             <item>
-             <widget class="QLabel" name="mainImageLabel_2">
+             <widget class="QLabel" name="hybridinputimage1_lbl">
               <property name="styleSheet">
                <string notr="true">background: rgb(255, 255, 255);
 border: 2px solid black;
@@ -456,14 +547,14 @@ border-radius: 10px</string>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
-               <widget class="QPushButton" name="pushButton_7">
+               <widget class="QPushButton" name="hybridbrowse_btn">
                 <property name="text">
                  <string>Browse Images</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_8">
+               <widget class="QPushButton" name="miximages_btn">
                 <property name="text">
                  <string>Mix Images</string>
                 </property>
@@ -472,7 +563,7 @@ border-radius: 10px</string>
              </layout>
             </item>
             <item>
-             <widget class="QLabel" name="mainImageLabel_3">
+             <widget class="QLabel" name="hybridinputimage2_lbl">
               <property name="styleSheet">
                <string notr="true">background: rgb(255, 255, 255);
 border: 2px solid black;
@@ -486,7 +577,7 @@ border-radius: 10px</string>
            </layout>
           </item>
           <item>
-           <widget class="QLabel" name="mainImageLabel_4">
+           <widget class="QLabel" name="hybridoutputimage_lbl">
             <property name="styleSheet">
              <string notr="true">background: rgb(255, 255, 255);
 border: 2px solid black;
@@ -511,7 +602,7 @@ border-radius: 10px</string>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="2,1,2">
             <item>
-             <widget class="QLabel" name="mainImageLabel_6">
+             <widget class="QLabel" name="siftinputimage1_lbl">
               <property name="styleSheet">
                <string notr="true">background: rgb(255, 255, 255);
 border: 2px solid black;
@@ -525,14 +616,14 @@ border-radius: 10px</string>
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_13">
               <item>
-               <widget class="QPushButton" name="pushButton_11">
+               <widget class="QPushButton" name="siftbrowse_btn">
                 <property name="text">
                  <string>Browse Images</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_12">
+               <widget class="QPushButton" name="matchfeatures_btn">
                 <property name="text">
                  <string>Match Features</string>
                 </property>
@@ -541,7 +632,7 @@ border-radius: 10px</string>
              </layout>
             </item>
             <item>
-             <widget class="QLabel" name="mainImageLabel_8">
+             <widget class="QLabel" name="siftinputimage2_lbl">
               <property name="styleSheet">
                <string notr="true">background: rgb(255, 255, 255);
 border: 2px solid black;
@@ -555,7 +646,7 @@ border-radius: 10px</string>
            </layout>
           </item>
           <item>
-           <widget class="QLabel" name="mainImageLabel_7">
+           <widget class="QLabel" name="siftoutputimage_lbl">
             <property name="styleSheet">
              <string notr="true">background: rgb(255, 255, 255);
 border: 2px solid black;
@@ -572,68 +663,18 @@ border-radius: 10px</string>
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>Face Detection</string>
+        <string>Webcam Detection</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_38">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_41" stretch="0,0,0">
+         <layout class="QVBoxLayout" name="verticalLayout_41" stretch="0">
           <property name="spacing">
            <number>22</number>
           </property>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_37">
-            <item>
-             <widget class="QLabel" name="mainImageLabel_10">
-              <property name="styleSheet">
-               <string notr="true">background: rgb(255, 255, 255);
-border: 2px solid black;
-border-radius: 10px</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_11">
-              <item>
-               <widget class="QPushButton" name="pushButton_9">
-                <property name="text">
-                 <string>Browse Image</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_10">
-                <property name="text">
-                 <string>Draw ROC Curve</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="Line" name="line">
-            <property name="frameShadow">
-             <enum>QFrame::Plain</enum>
-            </property>
-            <property name="lineWidth">
-             <number>10</number>
-            </property>
-            <property name="midLineWidth">
-             <number>0</number>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
            <layout class="QVBoxLayout" name="verticalLayout_36">
             <item>
-             <widget class="QLabel" name="mainImageLabel_9">
+             <widget class="QLabel" name="webcam_lbl">
               <property name="styleSheet">
                <string notr="true">background: rgb(255, 255, 255);
 border: 2px solid black;
@@ -647,16 +688,23 @@ border-radius: 10px</string>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
-               <widget class="QPushButton" name="pushButton_4">
+               <widget class="QPushButton" name="startcam_btn">
                 <property name="text">
-                 <string>Start Cam</string>
+                 <string>Start Camera</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_5">
+               <widget class="QPushButton" name="stopcam_btn">
                 <property name="text">
-                 <string>Stop Cam</string>
+                 <string>Stop Camera</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="roccurve_btn">
+                <property name="text">
+                 <string>Draw ROC Curve</string>
                 </property>
                </widget>
               </item>

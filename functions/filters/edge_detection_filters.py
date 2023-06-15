@@ -2,7 +2,8 @@ import numpy as np
 import scipy.signal as sig
 import cv2
 
-from filters.noise_filters import gaussian_filter
+from functions.filters.noise_filters import gaussian_filter
+from functions.main_functions import rgb_to_grayscale
 
 def canny_edge_detection(image, weak_th = None, strong_th = None):
 # defining the canny detector function 
@@ -93,6 +94,7 @@ def prewitt_edge_detection(image):
     maskX = np.array([[-1,0,1],[-1,0,1],[-1,0,1]])
     maskY = np.array([[-1,-1,-1],[0,0,0],[1,1,1]])
 
+    image = rgb_to_grayscale(image)
     prewittx = sig.convolve2d(image, maskX)
     prewitty = sig.convolve2d(image, maskY)
     edge_image = np.add(prewittx, prewitty)
@@ -102,6 +104,7 @@ def roberts_edge_detection(image):
     maskX = np.array([[0,1],[-1,0]])
     maskY = np.array([[1,0],[0,-1]])
 
+    image = rgb_to_grayscale(image)
     image = image.astype(np.float64)
     image /= 255.0
 
@@ -122,8 +125,10 @@ def sobel_edge_detection(image):
              [0, 0, 0],
              [-1, -2, -1]]
     
+    image = rgb_to_grayscale(image)
+
     sobelX = sig.convolve2d(image, maskX)
-    sobelY = sig.convolve2d(image, maskY )
+    sobelY = sig.convolve2d(image, maskY)
     edge_image = np.add(sobelX,sobelY)
     
-    return edge_image
+    return sobelX,sobelY,edge_image

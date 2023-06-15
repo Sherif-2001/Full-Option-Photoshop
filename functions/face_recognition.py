@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_curve, auc
 from sklearn.model_selection import train_test_split
+from functions.main_functions import rgb_to_grayscale
 
 # Load the cascade
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
@@ -108,7 +109,7 @@ def recognize_face(input_img, avg_face_vector, eigen_faces,model):
 
 def detect_faces(input_image, pca_parameters, model):
 
-    gray_input_image = cv2.cvtColor(input_image,cv2.COLOR_BGR2GRAY)
+    gray_input_image = rgb_to_grayscale(input_image)
 
     # Draw a bounding box around the detected face and label it with the closest reference face
     faces_detected = face_cascade.detectMultiScale(gray_input_image, scaleFactor = 1.3, minNeighbors=5)
@@ -167,4 +168,4 @@ def draw_roc_curve(y_test, y_prob,n_classes):
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
     plt.legend(loc="lower right")
-    plt.savefig("roc_curve.png")
+    plt.show()

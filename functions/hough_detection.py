@@ -1,5 +1,5 @@
 import numpy as np
-from edge_detection_filters import canny_edge_detection
+from functions.filters.edge_detection_filters import canny_edge_detection
 
 def hough_line(image,edge):
     image = canny_edge_detection(image)

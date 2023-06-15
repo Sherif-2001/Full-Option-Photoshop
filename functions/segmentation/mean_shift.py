@@ -18,11 +18,7 @@ def gaussian_mean(kernel, seed, bandwidth):
 
     return mean
 
-def mean_shift_method(image_path, num_samples = 5, threshold = 1.0,m = 1):
-
-    img = Image.open(image_path)
-    img.load()
-    img = np.array(img)
+def mean_shift_method(img, num_samples = 5, threshold = 1.0,m = 1):
 
     seg_img = img
 
@@ -99,5 +95,4 @@ def mean_shift_method(image_path, num_samples = 5, threshold = 1.0,m = 1):
                                     labels[i][j] = c
                     seg_img[i][j] = converged_means[labels[i][j]][2:]
 
-    seg_img = Image.fromarray(seg_img)
-    seg_img.save("mean_shift_output.png")
+    return seg_img

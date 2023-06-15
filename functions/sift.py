@@ -418,14 +418,12 @@ def generateDescriptors(keypoints, gaussian_images, window_width=4, num_bins=8, 
 
 # ------------------------------------ Feature Matching ------------------------------------------- #
 import numpy as np
+from functions.main_functions import rgb_to_grayscale
 
-def featureMatch(imagesPaths,sigma=1.6, num_intervals=3, assumed_blur=0.5, image_border_width=5):
+def featureMatch(image1,image2,sigma=1.6, num_intervals=3, assumed_blur=0.5, image_border_width=5):
 
-    image1 = cv2.imread(imagesPaths[0])
-    image2 = cv2.imread(imagesPaths[1])
-
-    gray1 = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
-    gray2 = cv2.cvtColor(image2, cv2.COLOR_BGR2GRAY)
+    gray1 = rgb_to_grayscale(image1)
+    gray2 = rgb_to_grayscale(image2)
 
     keyPoints1, descriptors1 = computeKeypointsAndDescriptors(gray1,sigma, num_intervals, assumed_blur, image_border_width)
     keyPoints2, descriptors2 = computeKeypointsAndDescriptors(gray2,sigma, num_intervals, assumed_blur, image_border_width)

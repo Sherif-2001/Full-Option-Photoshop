@@ -28,11 +28,8 @@ def kmeans(array_im, k, limit_it):
     return clusters, centres
 
 
-def K_means_segmentation(image_path, limit_it = 999999,k=8):
+def K_means_segmentation(image, limit_it = 999999,k=8):
 
-    image = Image.open(image_path)
-
-    image = np.array(image)
     image = image.astype(np.float32) / 255.0
 
     arr = image.reshape(-1, 3)
@@ -51,4 +48,4 @@ def K_means_segmentation(image_path, limit_it = 999999,k=8):
         for j in range(clusters.shape[1]):
             final_image[i,j,:] = centres[clusters[i,j].astype(int),:]
 
-    Image.fromarray(final_image).save("K_means_output.png")
+    return final_image

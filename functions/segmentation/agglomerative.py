@@ -36,8 +36,7 @@ def min_distance(clust1, clust2, distances):
                 d = distance
     return d
 
-def agglomerative_clustering(input_path, distance = DistanceCalculation.Min, k = 40):
-    image = np.array(Image.open(input_path))
+def agglomerative_clustering(image, distance = DistanceCalculation.Min, k = 40):
     
     # cluster the pixels of the image
     distances = {}
@@ -92,9 +91,4 @@ def agglomerative_clustering(input_path, distance = DistanceCalculation.Min, k =
             col = j % image.shape[1]
             new_image[row, col, :] = nodes[i].vec
 
-    
-    # convert the image array to a PIL image object
-    img = Image.fromarray(np.uint8(new_image))
-
-    # save the image to the output path
-    img.save('agglomerative_output.png')
+    return new_image

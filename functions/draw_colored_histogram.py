@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 import numpy as np
-from main_functions import  rgb_split
+from functions.main_functions import rgb_split
 
 def twoD_fast_hist(matrix):
     # calculate histogram

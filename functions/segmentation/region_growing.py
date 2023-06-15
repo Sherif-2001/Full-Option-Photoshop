@@ -11,16 +11,15 @@ def connects_selection(p):
         connects = [[0, -1], [1, 0],[0, 1], [-1, 0]]
     return connects
 
-def region_growing_method(image_path, thresh,p = 5,seeds = [[25, 35],[88, 200],[30, 250]]):
+def region_growing_method(image, thresh=100 ,p = 5,seeds = [[25, 35],[88, 200],[30, 250]]):
     '''
-    img: image array
+    image: image array
     seeds: array of seed points
     thresh: threshold value
     p: 0 or 5, 0 for 4-connectivity and 5 for 8-connectivity
     '''
-    img = cv2.imread(image_path)
-    height, width = img.shape
-    seed_mark = np.zeros(img.shape)
+    height, width = image.shape
+    seed_mark = np.zeros(image.shape)
     seed_list = []
     for seed in seeds:
         seed_list.append(seed)
@@ -34,9 +33,9 @@ def region_growing_method(image_path, thresh,p = 5,seeds = [[25, 35],[88, 200],[
             tmpY = current_pixel[1] + connects[i][1]
             if tmpX < 0 or tmpY < 0 or tmpX >= height or tmpY >= width:
                 continue
-            grayDiff = gray_diff(img, current_pixel, [tmpX, tmpY])
+            grayDiff = gray_diff(image, current_pixel, [tmpX, tmpY])
             if grayDiff < thresh and seed_mark[tmpX, tmpY] == 0:
                 seed_mark[tmpX, tmpY] = label
                 seed_list.append([tmpX, tmpY])
     
-    cv2.imwrite("region_growing_output.png",seed_mark)
+    return seed_mark

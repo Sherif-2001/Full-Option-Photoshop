@@ -1,6 +1,5 @@
 import numpy as np
-from main_functions import get_histogram
-
+from functions.main_functions import get_histogram, rgb_to_grayscale
 
 def cumulative_sum(frequency):
     cumulative_sum_arr = frequency
@@ -10,6 +9,7 @@ def cumulative_sum(frequency):
 
 # --------------------------------- Histogram Equalization -------------------------------------
 def equalization(image):
+    image = rgb_to_grayscale(image)
     cumulative = cumulative_sum(get_histogram(image))
     l = 256
     n = image.size
@@ -26,10 +26,13 @@ def equalization(image):
 
 # --------------------------------- Normalization -------------------------------------
 def normalization(image):
+    if len(image.shape) > 2:
+        image = rgb_to_grayscale(image)
     max_level = np.max(image)
     min_level = np.min(image)
     normalized_image = np.zeros(image.shape,dtype=int)
-    rows,columns = image.shape
+    
+    rows, columns = image.shape
     for i in range(rows):
         for j in range(columns):
             normalized_image[i][j] = ((image[i][j] - min_level)/(max_level-min_level))*255
