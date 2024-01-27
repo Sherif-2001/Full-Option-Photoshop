@@ -51,7 +51,9 @@ Welcome to the Computer Vision Photoshop-like Application! This project provides
 Here are a few examples of the application in action:
 
 ![image](https://github.com/Sherif-2001/Computer-Vision-Project/assets/93449171/8d3eb0b6-9771-4647-8876-e113395a88d9)
+
 Caption: Noise addition and filter application.
 
 ![harris_output](https://github.com/Sherif-2001/Computer-Vision-Project/assets/93449171/c9d291a6-c620-4fee-9e22-1306067a5db2)
+
 Caption: Corner detection.
