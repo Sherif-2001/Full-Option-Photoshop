@@ -1,12 +1,9 @@
 import cv2
 import numpy as np
 from PySide6.QtWidgets import QMainWindow,QFileDialog
-from PySide6.QtGui import QPixmap,QImage
-from PySide6.QtCore import Qt,QTimer
+from PySide6.QtGui import QPixmap
+from PySide6.QtCore import Qt
 from ui_mainwindow import Ui_MainWindow
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-
 
 from functions.filters.add_noise import salt_pepper_noise,gaussian_noise,uniform_noise
 from functions.filters.noise_filters import average_filter,gaussian_filter,median_filter
@@ -22,22 +19,8 @@ from functions.segmentation.agglomerative import agglomerative_clustering
 from functions.segmentation.k_means import K_means_segmentation
 from functions.segmentation.mean_shift import mean_shift_method
 from functions.segmentation.region_growing import region_growing_method
-from functions.face_recognition import detect_faces, get_reference_images, apply_pca, draw_roc_curve
 from functions.hybrid_images import hybrid_image
 from functions.sift import featureMatch
-
-# Get the reference images and the their labels
-references = get_reference_images()
-
-# Get the weights, eigen vectors and eigen values of the vector
-pca_params = apply_pca(references[2])
-
-x_train, x_test, y_train, y_test = train_test_split(pca_params[0], references[1],test_size=0.2,random_state=42)
-
-model = LogisticRegression(multi_class='multinomial', solver='lbfgs',max_iter=1000)
-model.fit(x_train, y_train)
-
-y_prob = model.predict_proba(x_test)
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -59,7 +42,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.harris_btn.clicked.connect(self.apply_harris_operator)
         self.threshold_btn.clicked.connect(self.apply_threshold)
         self.segment_btn.clicked.connect(self.apply_segmentation)
-        self.facedetect_btn.clicked.connect(self.apply_face_detection)
         self.homebrowse_btn.clicked.connect(self.home_browse_image)
         self.reset_btn.clicked.connect(self.reset_image)
 
@@ -193,13 +175,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.homeimage_lbl.setPixmap(QPixmap("assets/home_image.png").scaled(self.homeimage_lbl.size(),Qt.KeepAspectRatio,Qt.SmoothTransformation))
 
 
-    def apply_face_detection(self):
-        image = cv2.imread(self.homeImagePath)        
-        output_image = detect_faces(image, pca_params, model)
-        
-        cv2.imwrite("assets/home_image.png", output_image)
-        self.homeimage_lbl.setPixmap(QPixmap("assets/home_image.png").scaled(self.homeimage_lbl.size(),Qt.KeepAspectRatio,Qt.SmoothTransformation))
-
 
     def home_browse_image(self):
         fileName = QFileDialog.getOpenFileName(self,"Select Image",filter="Image File (*.png *.jpg *.jpeg)")
@@ -247,43 +222,3 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         cv2.imwrite("assets/sift_image.png", output_image)
         self.siftoutputimage_lbl.setPixmap(QPixmap("assets/sift_image.png").scaled(self.siftoutputimage_lbl.size(),Qt.KeepAspectRatio,Qt.SmoothTransformation))
-
-
-    def start_webcam(self):
-        # Create a video capture object
-        self.camera = cv2.VideoCapture(0,cv2.CAP_DSHOW)
-
-        # Set the frame size to match the label size
-        self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, self.VideoFeed.width())
-        self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, self.VideoFeed.height())
-    
-        # Create a timer to update the video stream
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.update_frame)
-        self.timer.start(5)  # 5 milliseconds
-
-    def stop_webcam(self):
-        self.camera.release()
-
-    def update_frame(self):
-        if self.camera.isOpened():
-            # Read the frame
-            stream, frame = self.camera.read()
-            flipped_frame = cv2.flip(frame, 1)
-
-            flipped_frame = detect_faces(flipped_frame, pca_params, model)
-
-            # Convert the frame to RGB format
-            flipped_frame = cv2.cvtColor(flipped_frame, cv2.COLOR_BGR2RGB)
-
-            # Create a QImage from the frame data
-            img = QImage(flipped_frame, flipped_frame.shape[1], flipped_frame.shape[0], QImage.Format_RGB888)
-
-            # Create a QPixmap from the QImage
-            pix = QPixmap.fromImage(img)
-
-            # Set the pixmap on the label to display the video stream
-            self.VideoFeed.setPixmap(pix)
-
-    def draw_roc_curve(self):
-        draw_roc_curve(y_test, y_prob, 5)

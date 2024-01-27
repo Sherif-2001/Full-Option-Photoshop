@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>819</width>
-    <height>725</height>
+    <height>808</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -33,7 +33,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -475,22 +475,6 @@ border-radius: 10px</string>
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="groupBox">
-              <property name="title">
-               <string>Face Detection</string>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout">
-               <item>
-                <widget class="QPushButton" name="facedetect_btn">
-                 <property name="text">
-                  <string>Detect Faces</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
              <widget class="QGroupBox" name="groupBox_14">
               <property name="title">
                <string>Main</string>
@@ -656,61 +640,6 @@ border-radius: 10px</string>
              <string/>
             </property>
            </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_3">
-       <attribute name="title">
-        <string>Webcam Detection</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_38">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_41" stretch="0">
-          <property name="spacing">
-           <number>22</number>
-          </property>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_36">
-            <item>
-             <widget class="QLabel" name="webcam_lbl">
-              <property name="styleSheet">
-               <string notr="true">background: rgb(255, 255, 255);
-border: 2px solid black;
-border-radius: 10px</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_6">
-              <item>
-               <widget class="QPushButton" name="startcam_btn">
-                <property name="text">
-                 <string>Start Camera</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="stopcam_btn">
-                <property name="text">
-                 <string>Stop Camera</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="roccurve_btn">
-                <property name="text">
-                 <string>Draw ROC Curve</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
           </item>
          </layout>
         </item>

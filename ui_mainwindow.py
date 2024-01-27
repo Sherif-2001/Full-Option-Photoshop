@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.3
+## Created by: Qt User Interface Compiler version 6.6.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(819, 725)
+        MainWindow.resize(819, 808)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -374,18 +374,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_24.addWidget(self.groupBox_13)
 
-        self.groupBox = QGroupBox(self.tab)
-        self.groupBox.setObjectName(u"groupBox")
-        self.verticalLayout = QVBoxLayout(self.groupBox)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.facedetect_btn = QPushButton(self.groupBox)
-        self.facedetect_btn.setObjectName(u"facedetect_btn")
-
-        self.verticalLayout.addWidget(self.facedetect_btn)
-
-
-        self.verticalLayout_24.addWidget(self.groupBox)
-
         self.groupBox_14 = QGroupBox(self.tab)
         self.groupBox_14.setObjectName(u"groupBox_14")
         self.verticalLayout_40 = QVBoxLayout(self.groupBox_14)
@@ -529,50 +517,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_32.addLayout(self.verticalLayout_31)
 
         self.tabWidget.addTab(self.tab_4, "")
-        self.tab_3 = QWidget()
-        self.tab_3.setObjectName(u"tab_3")
-        self.verticalLayout_38 = QVBoxLayout(self.tab_3)
-        self.verticalLayout_38.setObjectName(u"verticalLayout_38")
-        self.verticalLayout_41 = QVBoxLayout()
-        self.verticalLayout_41.setSpacing(22)
-        self.verticalLayout_41.setObjectName(u"verticalLayout_41")
-        self.verticalLayout_36 = QVBoxLayout()
-        self.verticalLayout_36.setObjectName(u"verticalLayout_36")
-        self.webcam_lbl = QLabel(self.tab_3)
-        self.webcam_lbl.setObjectName(u"webcam_lbl")
-        self.webcam_lbl.setStyleSheet(u"background: rgb(255, 255, 255);\n"
-"border: 2px solid black;\n"
-"border-radius: 10px")
-
-        self.verticalLayout_36.addWidget(self.webcam_lbl)
-
-        self.horizontalLayout_6 = QHBoxLayout()
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.startcam_btn = QPushButton(self.tab_3)
-        self.startcam_btn.setObjectName(u"startcam_btn")
-
-        self.horizontalLayout_6.addWidget(self.startcam_btn)
-
-        self.stopcam_btn = QPushButton(self.tab_3)
-        self.stopcam_btn.setObjectName(u"stopcam_btn")
-
-        self.horizontalLayout_6.addWidget(self.stopcam_btn)
-
-        self.roccurve_btn = QPushButton(self.tab_3)
-        self.roccurve_btn.setObjectName(u"roccurve_btn")
-
-        self.horizontalLayout_6.addWidget(self.roccurve_btn)
-
-
-        self.verticalLayout_36.addLayout(self.horizontalLayout_6)
-
-
-        self.verticalLayout_41.addLayout(self.verticalLayout_36)
-
-
-        self.verticalLayout_38.addLayout(self.verticalLayout_41)
-
-        self.tabWidget.addTab(self.tab_3, "")
 
         self.verticalLayout_12.addWidget(self.tabWidget)
 
@@ -637,8 +581,6 @@ class Ui_MainWindow(object):
         self.agglomerative_radio.setText(QCoreApplication.translate("MainWindow", u"Agglomerative", None))
         self.meanshift_radio.setText(QCoreApplication.translate("MainWindow", u"Mean Shift", None))
         self.segment_btn.setText(QCoreApplication.translate("MainWindow", u"Apply Segmentation", None))
-        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Face Detection", None))
-        self.facedetect_btn.setText(QCoreApplication.translate("MainWindow", u"Detect Faces", None))
         self.groupBox_14.setTitle(QCoreApplication.translate("MainWindow", u"Main", None))
         self.homebrowse_btn.setText(QCoreApplication.translate("MainWindow", u"Browse Image", None))
         self.reset_btn.setText(QCoreApplication.translate("MainWindow", u"Reset Image", None))
@@ -655,10 +597,5 @@ class Ui_MainWindow(object):
         self.siftinputimage2_lbl.setText("")
         self.siftoutputimage_lbl.setText("")
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"SIFT", None))
-        self.webcam_lbl.setText("")
-        self.startcam_btn.setText(QCoreApplication.translate("MainWindow", u"Start Camera", None))
-        self.stopcam_btn.setText(QCoreApplication.translate("MainWindow", u"Stop Camera", None))
-        self.roccurve_btn.setText(QCoreApplication.translate("MainWindow", u"Draw ROC Curve", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Webcam Detection", None))
     # retranslateUi
 
